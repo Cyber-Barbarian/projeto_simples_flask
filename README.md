@@ -19,3 +19,8 @@
 - Install Flask: Within the activated environment, use the following command to install Flask:
 
 `$ pip install Flask`
+
+## quickstart
+- [hello.py](myproject/.venv/hello.py)
+- https://flask.palletsprojects.com/en/stable/quickstart/
+

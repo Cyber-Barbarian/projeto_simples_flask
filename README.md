@@ -21,6 +21,6 @@
 `$ pip install Flask`
 
 ## quickstart
-- [hello.py](myproject/.venv/hello.py)
+- [hello.py](myproject/hello.py)
 - https://flask.palletsprojects.com/en/stable/quickstart/
 

@@ -81,3 +81,47 @@ def login_post():
 #on terminal you can use $ curl -X GET "http://localhost:5000/..." on any url link to test the application, teh other methods only if exists specificaly.
 
 #Static Files
+#mkdir static
+with app.test_request_context():
+    print(url_for('static', filename='style.css'))
+
+#Rendering Templates - Jinja2, render_template() method
+#first create a templates folder in a module or package
+
+from flask import render_template
+@app.route('/hello_template/')
+@app.route('/hello_template/<name>')
+def hello_template(name=None):
+    return render_template('hello.html', person=name)
+
+# Accessing Request Data -> The easiest solution for unit testing is to use the test_request_context() context manager. In combination with the with statement it will bind a test request so that you can interact with it. Here is an example:
+
+from flask import request   
+with app.test_request_context('/hello_template', method = 'GET'):
+    assert request.method == 'GET'
+    assert request.path == '/hello_template'
+
+#The Request Object
+
+from flask import request
+
+@app.route('/login_req', methods=['POST', 'GET'])
+def valid_login(username, password):
+    return username == 'admin' and password == 'secret'
+def log_the_user_in(username):  
+    return f'User {username} logged in'
+def login_req():
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'],
+                       request.form['password']):
+            return log_the_user_in(request.form['username'])
+        else:
+            error = 'Invalid username/password'
+            return error
+    # the code below is executed if the request method
+    # was GET or the credentials were invalid
+    return render_template('login.html', error=error, user = request.form['username'])
+
+# $ curl -X POST "http://localhost:5000/login_req" -d "username=admin&password=secret"
+#http://admin:secret@localhost:5000/login_req/

@@ -37,3 +37,6 @@ pip install -r requirements.txt
 - [hello.py](myproject/hello.py)
 - https://flask.palletsprojects.com/en/stable/quickstart/
 
+## run flask 
+- $ flask --app hello run
+- $ flask --app hello run --debug

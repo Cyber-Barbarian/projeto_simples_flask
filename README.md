@@ -20,6 +20,19 @@
 
 `$ pip install Flask`
 
+- requirements generation
+```
+pip freeze > requirements.txt
+
+```
+
+-requirements instalation
+
+```
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 ## quickstart
 - [hello.py](myproject/hello.py)
 - https://flask.palletsprojects.com/en/stable/quickstart/
